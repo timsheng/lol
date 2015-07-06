@@ -1,0 +1,23 @@
+---
+browser: firefox
+host: http://qa.ndb.capvision.com/
+#tags: home,consultant,client
+tags:
+   home: false
+   consultant: false
+   client: false
+   contact: false
+   compliance: false
+   Con_R: false
+   international: false
+   invoicing: false
+   payment: false
+   profile: false
+   conference: false
+   consultation: false
+   convey: false
+   HR: false
+   report: false
+   test: false
+   osl: true
+
