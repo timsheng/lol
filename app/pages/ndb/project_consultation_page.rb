@@ -4,360 +4,527 @@ class ProjectConsultationPage < Lol::Page
   include Action
   page_url "#{$config.host}project/consultation/index/index"
   
-  button :filter, :name=> "yt0"
-  select_list :project_industry, :id=> "ProjectSearchForm_industryid"
-  select_list :project_status, :id=> "ProjectSearchForm_status"
-  link :project_create_btn, :id=>"project_create_btn"
+  #search consultation btn
+  button :search_consultation, :name=> "yt0"
+
+  #user filter
+  span :user_filter, :xpath=>"//div[@id='s2id_ProjectSearchForm_userid']/a/span"
+
+  #select user
+  div :select_user, :text=>"test_km1"
+
+  #client filter
+  span :client_filter, :xpath=> "//div[@id='s2id_ProjectSearchForm_clientid']/a/span"
+
+  #select client
+  div :select_client, :text=>"小樱1"
+
+  #select ca client
+  div :select_ca_client, :text=>"阿斯达 (若风)"
+
+  #select compliance client
+  div :select_compliance_client, :text=>"蒂姆客户"
+
+  #project table list
+  table :project_table_list, :class=>"items table table-striped"
+
+  #participant filter
+  select_list :participant_filter, :id=>"ProjectSearchForm_participant"
+
+  #search keywords
+  text_field :keywords, :id=>"ProjectSearchForm_keywords"
+
+  #industry filter
+  select_list :industry_filter, :id=> "ProjectSearchForm_industryid"
+
+  #status filter
+  select_list :status_filter, :id=>"ProjectSearchForm_status"
+
+  #create consultation link
+  link :create_consultation_link, :id=>"project_create_btn"
+
+  #project type
+  select_list :project_type, :id=>"Project_category"
+
+  #project name
   text_field :project_name, :id=> "Project_name"
-  #input project description
-  text_field :project_description, :id=> "Project_description"
+
+  #project client case code
+  text_field :project_client_case_code, :id=>"Project_clientcode"
+
+  #project description
+  text_area :project_description, :id=> "Project_description"
+
   #select industry
   select_list :select_industry, :id=> "industry-selector"
-  #select project type
-  select_list :select_consultation_type, :id=> "ProjectConsultation_type"
-  button :next, :id=> "yw1"
+
+  #project consultants requested
+  text_field :project_consultants_requested, :id=>"Project_requestedconsultants"
+
+  #project consultants expected
+  text_field :project_consultants_expected, :id=>"Project_expectedconsultants"
+
+  #project price
+  text_field :project_price, :id=>"Project_price"
+
+  #project price currency
+  select_list :project_price_currency, :id=>"Project_currencyunit"
+
+  #project time frame
+  select_list :project_time_frame, :id=>"Project_timeframe"
+
+  #project next btn
+  button :project_next, :id=> "yw1"
+
+  #project key questions
   text_field :key_questions, :id=> "ProjectDetailForm_keyQuestions"
-  button :save, :id=> "yw5"
-  h1 :consultation_title, :xpath=> "//h1"
-  link :choose_project, :xpath=> "//td[2]/a"
-  #select the first project
-  checkbox :project_checkbox, :id=> "project-grid_c0_0"
-  #select the second project
+
+  #project client 
+  span :project_client, :xpath=> "//div[@id='s2id_ProjectClient_clientid']/a/span"
+
+  #select project client
+  div :select_project_client, :text=> "小樱1"
+
+  #select project client with ca
+  div :select_project_client_with_ca, :text=> "阿斯达 (若风)"
+
+  #project client contact
+  text_field :project_client_contact, :xpath=>"//div[@id='s2id_ProjectClientContact_contactid']/ul/li/input"
+
+  #select project client contact
+  div :select_project_client_contact, :text=>"WEWEWE"
+
+  #client project manager
+  text_field :client_project_manager, :xpath=>"//div[@id='s2id_ProjectClientContactManager_contactid']/ul/li/input"
+
+  #select client project manager
+  div :select_client_project_manager, :text=>"韩寒"
+
+  #project manager
+  select_list :project_manager, :id=>"ProjectDetailForm_pm"
+
+  #skm
+  select_list :skm, :id=>"ProjectDetailForm_skm"
+
+  #support member
+  text_field :support_member, :xpath=>"//div[@id='s2id_ProjectDetailForm_other']/ul/li/input"
+
+  #select support member
+  div :select_support_member, :text=>"Test Skm1(test_skm1) - Starbark Team"
+
+  #info requirements
+  text_area :info_requirements, :id=> "ProjectDetailForm_infoRequirements"
+  
+  #key questions
+  text_area :key_questions, :id=>"ProjectDetailForm_keyQuestions"
+
+  #preferred profiles
+  text_area :preferred_profiles, :id=>"ProjectDetailForm_preferredProfiles"
+
+  #questionnaire
+  text_area :questionnaire, :id=>"ProjectDetailForm_questionnaire"
+
+  #save consultation
+  button :save_consultation, :id=>"yw5"
+
+  #first consultation
+  link :first_consultation, :xpath=>"//tr[1]/td[3]/a"
+
+  #project info tab
+  link :project_info_tab, :xpath=> "//ul[@id='yw0']/li[2]/a"
+  
+  #edit project basic information 
+  element :edit_project_basic_information,:i, :xpath=> "//a[@id='project-basic-edit-btn']/i"
+
+  #edit project client contact
+  element :edit_project_client_contact,:i, :xpath=>"//a[@id='project-client-and-contact-edit-btn']/i"
+
+  #edit project team 
+  element :edit_project_team, :i, :xpath=> "//a[@id='project-team-edit-btn']/i"
+
+  #edit project manager
+  select_list :edit_project_manager, :id=>"Team_pm"
+
+  #edit skm
+  select_list :edit_skm, :id=>"Team_skm"
+
+  #edit project requirements
+  element :edit_project_requirements, :i, :xpath=>"//a[@id='project-requirements-edit-btn']/i"
+
+  #edit info requirements
+  text_area :edit_info_requirements, :id=>"Profile_info_requirements"
+
+  #edit key questions
+  text_area :edit_key_questions, :id=>"Profile_key_questions"
+
+  #edit preferred profiles
+  text_area :edit_preferred_profiles, :id=>"Profile_preferred_profiles"
+
+  #edit questionnaire
+  text_area :edit_questionnaire, :id=>"Profile_questionnaire"
+
+  #project compliance tab
+  link :project_compliance_tab, :xpath=>"//ul[@id='yw0']/li[3]/a"
+
+  #project client info tab
+  link :project_client_info_tab, :xpath=>"//ul[@id='yw0']/li[4]/a"
+
+  #project client contact tab
+  link :project_client_contact_tab, :xpath=>"//ul[@id='yw0']/li[5]/a"
+
+  #first client contact
+  link :first_client_contact, :xpath=>"//tr/td/a"
+
+  #project emails tab
+  link :project_emails_tab, :xpath=>"//ul[@id='yw0']/li[6]/a"
+
+  #project sms tab
+  link :project_sms_tab, :xpath=>"//ul[@id='yw0']/li[7]/a"
+
+  #first project checkbox 
+  checkbox :first_project_checkbox, :id=> "project-grid_c0_0"
+
+  #second project checkbox
   checkbox :second_project_checkbox, :id=> "project-grid_c0_1"
+
+  #choose action
   select_list :choose_action, :id=> "Action_type"
+
+  #project update btn
   link :project_update_btn, :id=> "project_update_btn"
-  div :project_update_alert, :class=> "alert alert-success"
-  textarea :input_invalid_note, :id=> "invalid_note"
-  button :save_note, :xpath=> "//div[3]/div/button"
-  button :complete_save_note, :xpath=> "//div[3]/div/button[1]"
-  select_list :project_choosefeedback, :id=> "service"
-  button :feedback_save, :xpath=> "//div[7]/div[3]/div/button"
-  select_list :choose_taskaction, :id=> "action"
-  #click update btn
-  button :update_taskstatus, :id=> "taskupdate-btn"
-  link :select_project, :xpath=> "//td[2]/a"
-  #view task status
-  td :task_status, :xpath=> "//tr/td[3]"
-  #click delete link
-  link :del_project, :xpath=> "//a[3]"
-  #link to client info page
-  link :go_to_project_clientinfo_page, :xpath=> "//ul[@id='yw0']/li[4]/a"
-  #link to client contacts page
-  link :go_to_project_clientcontacts_page, :xpath=> "//ul[@id='yw0']/li[5]/a"
-  #link to emails page
-  link :go_to_project_emails_page, :xpath=> "//ul[@id='yw0']/li[6]/a"
-  #link to sms page
-  link :go_to_project_sms_page, :xpath=> "//ul[@id='yw0']/li[7]/a"
-  #link to compliance page
-  link :go_to_project_compliance_page, :xpath=> "//ul[@id='yw0']/li[3]/a"
-  #select first task
-  checkbox :first_task_checkbox, :id=> "task-grid_c0_0"
-  #select second task
-  checkbox :second_task_checkbox, :id=> "task-grid_c0_1"
+
   #project alert information
-  div :alert_success_information,:xpath=> "//div[3]/div/div/div"
-  #click save on hold note btn
-  button :save_onhold_note,:text=> "Save"
-  #add_consultant btn
-  p :add_consultant_alert, :xpath=> "//div[@id='add-consultant-dialog']/p"
-  #update task 
-  element :update_task_link, :i ,:xpath=> "//tr/td[20]/div/a/i"
-  #update task after send calender
-  element :update_task_link_after_calender, :i ,:xpath=> "//tr/td[19]/div/a/i"
-  #update task after delete a complete task
-  element :update_task_link1, :i ,:xpath=> "//tr/td[18]/div/a/i"
-  #input consultation date
-  text_field :input_consultation_date, :xpath=> "//input[@id='ProjectConsultationTask_datetimeString']"
-  #save after edit consultation
-  button :save_consultaion, :id=> "yw3"
-  #input consultation hour
-  text_field :input_consultation_hour, :xpath=> "//input[@id='ProjectTaskPayment_hours']"
-  #click view project info link
-  element :view_project_link, :i ,:xpath=> "//div[@id='project-grid']/table/tbody/tr/td[17]/a/i"
-  #click delete consultation link
-  link :del_consultation, :xpath=> "//a[3]"
-  #click project feedback link
-  link :project_feedback_link, :xpath=> "//div[@id='project-grid']/table/tbody/tr[1]/td[17]/a[2]"
+  div :alert_success_information,:xpath=> "//div[3]/div/div/div[1]"
+
+  #project view btn
+  element :project_view_btn, :i, :xpath=>"//tr[1]/td[20]/a[1]/i"
+
+  #project upload btn
+  element :project_upload_btn, :i, :xpath=>"//tr[1]/td[20]/a[3]/i"
+
+  #select upload file
+  file_field :select_upload_file, :id=>"ndb-file-upload-input"
+
+  #upload file
+  button :upload_file, :id=>"ndb-file-upload-upload-btn"
+
+  #delete project btn
+  element :delete_project_btn, :i, :xpath=>"//tr[1]/td[20]/a[2]/i"
+
+  #choose task action
+  select_list :choose_task_action, :id=> "action"
+
+  #click update btn
+  button :update_task_status, :id=> "taskupdate-btn"
+
+  #task list checbox
+  elements :task_list_checkbox, :input, :xpath=>"//td[@class='checkbox-column']/input"
+
+  #task list thead checkbox
+  checkbox :task_list_thead_checkbox,  :xpath=>"//thead[@class='tableFloatingHeaderOriginal']/tr/th/input"
+
   #add consultant link
   link :add_consultant_link, :text=> "Add Consultant"
+
   #first consultant checkbox
   checkbox :first_consultant, :id=> "yw0_c0_0"
+
   #second consultant checkbox
   checkbox :second_consultant, :id=> "yw0_c0_1"
+
   #click add consultant btn
-  button :add_consultant_btn, :id=> "btn-add-consultant"
+  button :add_consultant_to_project_btn, :id=> "btn-add-consultant"
+
   #Go to this project list btn
-  button :go_to_this_project_list, :text=> "Go to this project list"
-  #click recommand alert btn 
-  button :recommand_alert_btn, :xpath=> "//div[3]/div/button"
-  #change status btn
-  button :change_status, :id=> "change-status"
+  button :back_to_the_project, :text=> "Back to the project"
+
   #choose whether Contacted or not
-  radio_button :contacted_btn, :xpath=> "//div[6]/div/span/input"
-  #input consultant date
-  text_field :consultant_date, :xpath=> "//span[2]/div/input"
-  #input nick name  
-  text_field :nick_name, :xpath=> "//div[@id='yw0_tab_1']/div/div[3]/div[2]/span[2]/input"
-  #select type of interview
-  select_list :type_of_interview, :xpath=> "//div[@id='yw0_tab_1']/div/div[3]/div[4]/span[2]/select"
-  #click client 
-  span :click_client, :xpath=> "//div[@id='s2id_ProjectClient_clientid']/a/span"
-  #click client on consultation page
-  span :click_consultation_client, :xpath=> "//div[@id='s2id_ProjectSearchForm_clientid']/a/span"
-  #select client
-  div :select_client, :text=> "cash"
-  #click project basic info link
-  link :project_basic_edit, :id=> "project-basic-edit-btn"
-  #click project client and contact edit link
-  link :edit_project_client_contact, :id=> "project-client-and-contact-edit-btn"
-  #click project team edit link
-  link :edit_project_team, :id=> "project-team-edit-btn"
-  #select team pm"
-  select_list :select_team_pm, :id=> "Team_pm"
-  #click project requirements edit link
-  link :edit_project_requirements, :id=> "project-requirements-edit-btn"
-  #input project requirements info requirements
-  text_area :input_info_requirements, :xpath=> "//textarea[@id='Profile_info_requirements']"
-  #select on hold reason
-  select_list :select_onhold_reason, :id=> "onhold_note"
-  #link of compliance on project page
-  link :link_to_compliance, :xpath=> "//div[3]/div/div/ul/li[3]/a"
-  #click client agreement link
-  link :client_agreement, :id=> "compliance_ca"
-  #select client agreement
-  select_list :select_client_agreement, :xpath=> "//select"
-  #save client agreement
-  button :save_client_agreement, :xpath=> "//button[@type='submit']"
-  #next step 
-  button :next_step, :name=> "next"
-  #input mail to
-  ul :input_mail_to ,:xpath=> "//span[2]/div/ul"
-  #select email to mail to
-  div :select_email ,:text=> "Alex Tang [ atang@capvision.com ]"
-  #select email1 to mail to
-  div :select_email1 ,:text=> "Admin [ dbsender@capvision.com.cn ]"
-  #click No btn
-  button :click_no_btn ,:xpath=> "//button[2]"
-  #input calendar to
-  ul :input_calendar_to ,:xpath=> "//div[@id='email_template']/div[4]/span[2]/div/ul"
-  #send email btn
-  button :send_email ,:xpath=> "//input[@id='send-email']"
-  #click cancel calendar link
-  element :cancel_calendar_link , :i ,:xpath=> "//div[@id='task-grid']/table/tbody/tr[1]/td[19]/div[6]/a/i"
+  radio_button :select_contacted, :xpath=> "//div[6]/div/span/input"
+
+  #next btn
+  button :next_btn, :class=>"btn button-next"
+
+  #select email to
+  text_field :select_email_to, :xpath=>"//div[@class='tab-content']/div[2]/div[1]/div[3]/span[2]/div/ul/li/input"
+
+  #send email
+  button :send_email, :id=>"send-email"
+
+  #recommend continue btn
+  span :recommend_continue,:xpath=>"//span[@class='ui-button-text' and contains(text(),'Continue')]"
+
+  #consultation time
+  text_field :consultation_time, :xpath=> "//div[@class='consultant-info']/div[1]/span[2]/span[2]/div/input"
+
+  #nick name  
+  text_field :nick_name, :xpath=> "//div[@class='consultant-info']/div[3]/span[2]/input"
+
+  #type of interview
+  select_list :type_of_interview, :xpath=> "//div[@class='consultant-info']/div[5]/span[2]/select"
+
   #select calendar to
-  div :select_calendar_to ,:text=> "Admin [ dbsender@capvision.com.cn ]"
-  #click Yes btn
-  button :click_yes_btn ,:text=> "Yes"
-  #select sms 
-  checkbox :select_sms ,:xpath=> "//span/input"
-  #select second sms
-  checkbox :select_second_sms ,:xpath=> "//div[2]/div[2]/div/span/input"
-  #submit sms
-  button :submit_sms ,:text=> "Submit"
-  #project consultation task endtime string
-  text_field :consultation_task_endtime ,:id=> "ProjectConsultationTask_endtimeString"
-  #project consultation task type of interview
+  text_field :select_calendar_to ,:xpath=> "//div[@id='email_template']/div[4]/span[2]/div/ul/li/input"
+
+  #cancel btn
+  button :cancel_btn ,:name=>"cancel"
+
+  #cancel calendar btn
+  element :cancel_calendar_btn , :i ,:xpath=> "//a[@class='cancel-calendar']/i"
+
+  #add client contact btn
+  element :add_client_contact_btn, :i, :xpath=>"//a[@class='add-client-contacts']/i"
+
+  #confirm_add_client_contact_btn
+  span :confirm_add_client_contact_btn, :xpath=>"(//span[@class='ui-button-text' and contains(text(),'OK')])[2]"
+
+  #task manager
+  select_list :task_manager, :id=>"ProjectConsultationTask_taskmanagerid"
+
+  #task end date
+  text_field :task_end_date ,:id=> "ProjectConsultationTask_endtime_datepicker"
+
+  #select task end date
+  cell :select_task_end_date, :xpath=>"//table/tbody/tr[5]/td[4]"
+
+  #task end time
+  text_field :task_end_time, :id=>"ProjectConsultationTask_endtimeString"
+
+  #consultation task type of interview
   select_list :consultation_task_type_of_interview ,:id=> "ProjectConsultationTask_typeofinterview"
+
   #project consultation task industry
   span :consultation_task_industry ,:xpath=> "//div[@id='s2id_ProjectConsultationTask_industry']/a/span"
+
   #select project consultation task industry
   div :select_consultation_task_industry ,:text=> "能源-能源开采与加工-石油与天然气开采"
-  #input project task receipts hours
-  text_field :input_task_receipts_hours ,:id=> "ProjectTaskReceipts_hours"
-  #input project task receipts bill notes
-  text_area :input_task_receipts_billnotes ,:id=> "ProjectTaskReceipts_billnotes"
-  #input project task payment hours
-  text_field :input_task_payment_hours ,:id=> "ProjectTaskPayment_hours"
-  #save btn on the second step of task complete page
-  button :save_complete_page_btn ,:name=> "submit"
-  #click compliance tnc link
-  link :compliance_tnc_link ,:id=> "compliance_tnc"
-  #click compliance ca link
-  link :compliance_ca_link ,:id=> "compliance_ca"
-  #select 
-  select_list :select_tnc_or_ca ,:xpath=> "//div/div/div/select"
-  #save tnc or ca
-  button :save_tnc_or_ca ,:xpath=>"//div/div/div[2]/button[1]"
-  #training label
-  label :training_label ,:xpath=> "//div[@id='training-button']/div/label"
-  #capcheck label
-  label :capcheck_label ,:xpath=> "//div[@id='capcheck-button']/div/label"
-  #clientcheck label
-  label :clientcheck_label ,:xpath=> "//div[@id='clientcheck-button']/div/label"
-  #task list link
-  link :link_to_task_list ,:text=> "Task List"
-  #link
-  link :task_list_link ,:xpath=> "//div[3]/div/div/ul/li[1]/a"
-  #upload file
-  element :upload_file ,:i ,:xpath=> "//div[@id='task-grid']/table/tbody/tr/td[20]/div[5]/a/i"
-  #ndb file upload input
-  file_field :ndb_file_upload_input ,:id=> "ndb-file-upload-input"
-  #ndb file upload upload btn
-  button :ndb_file_upload_btn ,:id=> "ndb-file-upload-upload-btn"
-  #ndb delete document
-  element :del_document , :i ,:xpath=> "//div[@id='task-grid']/table/tbody/tr/td[18]/a[2]/i"
-  #verify the info of alert after deleted document
-  div :info_after_delete_document ,:xpath=> "//div[@id='task-grid']/table/tbody/tr/td[19]"
-  #task feedback
-  element :task_feedback_link , :i ,:xpath=>"//div[@id='task-grid']/table/tbody/tr/td[22]/div/a[2]/i"
-  #expertise
-  select_list :select_expertise ,:id=> "expertise"
-  #communication
-  select_list :select_communication ,:id=> "communication"
-  #professionalism
-  select_list :select_professionalism ,:id=> "professionalism"
-  #save task feedback
-  button :save_task_feedback ,:xpath=> "//div[9]/div[3]/div/button"
-  #click km note link
-  link :km_note_link ,:xpath=> "//div[@id='task-grid']/table/tbody/tr/td[10]/a"
-  #input km note 
-  text_field :input_km_note ,:xpath=> "//div/div/div/input"
-  #save km note
-  button :save_km_note ,:xpath=> "//div/div/div[2]/button"
-  #send ca
-  link :send_ca ,:text=> "Send CA"
-  #compliance send submit
-  button :compliance_send_submit ,:id=> "compliance-send-submit"
-  #click sign ca link
-  link :sign_ca ,:text=> "Sign CA"
-  #click resend ca link
-  link :resend_ca ,:text=> "Resend CA"
-  #verify row is red
-  element :verify_row_red_ornot , :tr ,:xpath=> "//table/tbody/tr"
-  #save btn 
-  button :save_project_feedback, :xpath=>"//div[7]/div[3]/div/button"
-  #delete project
-  element :delete_project, :i ,:xpath=>"//tr/td[17]/a[3]/i"
-  #alert info 
-  div :verify_alert, :class=>"alert alert-block alert-error"
-  #Project requested consultants
-  text_field :input_consultants_requested, :id=>"Project_requestedconsultants"
-  #Project expected consultants
-  text_field :input_consultants_expected, :id=>"Project_expectedconsultants"
-  #Project price
-  text_field :input_consultants_price, :id=>"Project_price"
-  #Project currencyunit
-  select_list :select_currency, :id=>"Project_currencyunit"
-  #cancel btn 
-  link :cancel_btn, :text=>"Cancel"
-  button :cancel_updatetask, :text=>"Cancel"
-  #cancel arrange step2
-  button :cancel_arrange_step2, :xpath=>"//div[2]/div[2]/input[3]"
+
+  #client hour
+  text_field :client_hour ,:id=> "ProjectTaskReceipts_hours"
+
+  #client billing notes
+  text_area :client_billing_notes,:id=> "ProjectTaskReceipts_billnotes"
+
+  #consultant hour
+  text_field :consultant_hour ,:id=> "ProjectTaskPayment_minutes"
+
+  #uncheck send feedback email to consultant
+  checkbox :send_feedback_email_to_consultant,:id=>"send-mail-consultant"
+
+  #complete page save btn
+  button :complete_page_save_btn ,:id=> "task-complete-form-btn"
+
+  #apply for payment btn
+  link :apply_for_payment_btn, :class=>"apply-payment"
+
+  #yes or no butn
+  span :yes_or_no_btn, :class=>"labelLeft"
+
+  #apply btn
+  span :apply_btn, :xpath=>"(//span[@class='ui-button-text' and contains(text(),'Apply')])[3]"
+
+  #task table list
+  table :task_table_list ,:xpath=>"//div[@id='task-grid']/table"
+
+  #cl btn
+  link :cl_btn, :class=>"cl-adjustment-btn"
+
+  #new client hour
+  text_field :new_client_hour, :id=>"AdjustClientForm_clientHour"
+
+  #billing notes
+  text_area :billing_notes, :id=>"AdjustClientForm_changeReason"
+
+  #confirm change cl btn
+  span :confirm_change_cl_btn ,:xpath=>"(//span[@class='ui-button-text' and contains(text(),'Apply')])[2]"
+
+  #co btn
+  link :co_btn, :class=>"co-adjustment-btn"
+
+  #new consultant hour
+  text_field :new_consultant_hour, :id=>"PaymentReportDetail_consultant_hours"
+
+  #payment notes
+  text_area :payment_notes, :id=>"PaymentReportDetail_change_reason"
+
+  #confirm change co btn
+  span :confirm_change_co_btn, :xpath=>"(//span[@class='ui-button-text' and contains(text(),'Apply')])[1]"
+
+  #new consultant cash
+  text_field :new_consultant_cash, :id=>"PaymentReportDetail_consultant_cash"
+
+  #not selected type
+  elements :not_selected_type,:input,:name=>"ProjectConsultationTask[reject]"
+
+  #confirm not selected type
+  span :confirm_not_selected_type, :xpath=>"(//span[@class='ui-button-text' and contains(text(),'OK')])[1]"
+
+  #task list send sms btn
+  link :task_list_send_sms_btn, :id=>"task_update_btn"
+
+  #confirm send sms
+  span :confirm_send_sms, :xpath=>"//span[@class='ui-button-text' and contains(text(),'Send')]"
+
   #task list page alert error info
   div :alert_error_info, :id=>"flash-alert-error"
-  #send sms btn
-  link :send_sms, :id=>"task_update_btn"
+
+  #unsuccess submit btn
+  button :unsuccess_submit_btn, :id=>"task-unsuccess-btn"
+
+  #update task btn
+  element :update_task_btn, :i, :xpath=>"(//a[@class='update']/i)[2]"
+
+  #update task page save btn
+  button :update_task_page_save_btn, :id=>"yw1"
+  
+  #task feedback btn
+  element :task_feedback_btn , :i ,:xpath=>"(//a[@class='task-feedback-href']/i)[1]"
+
+  #expertise
+  select_list :select_expertise ,:id=> "expertise"
+
+  #communication
+  select_list :select_communication ,:id=> "communication"
+
+  #professionalism
+  select_list :select_professionalism ,:id=> "professionalism"
+
+  #save task feedback
+  span :save_task_feedback ,:xpath=> "//span[@class='ui-button-text' and contains(text(),'Save')]"
+
+  #km note link
+  link :km_note_link ,:xpath=> "//*[@id='task-grid']/table/tbody/tr[1]/td[9]/a"
+
+  #km note value
+  text_field :km_note_value ,:xpath=> "//div[@class='control-group']/div[1]/div[1]/input"
+
+  #save km note
+  element :save_km_note,:i, :xpath=> "//div[@class='editable-buttons']/button[1]/i"
+
+  #choose region
+  select_list :choose_region, :id=>"task-origin"
+
+  #search task btn
+  element :search_task_btn, :i, :xpath=>"//a[@id='task-search-icon']/i"
+
+  #search task keywords
+  text_field :search_task_keywords, :id=>"task-search-text"
+
+  #fo btn
+  elements :fo_btn,:a, :class=>"fo-adjustment-btn"
+
+  #confirm fo
+  span :confirm_fo, :xpath=>"(//span[@class='ui-button-text' and contains(text(),'OK')])[3]"
+
+  #no match ca alert
+  div :no_match_ca_alert, :id=>"recommend-alert"
+
+  #resend ca btn
+  link :resend_ca_link ,:xpath=>"//td[@class='button-column']/div[3]/a"
+
+  #upload ca attachment btn
+  element :upload_ca_attachment_btn, :i, :xpath=>"(//a[@class='upload-document']/i)[2]"
+
+  #sign ca btn
+  link :sign_ca_btn, :xpath=>"//td[@class='button-column']/div[4]/a"
+
+  #delete ca attachment
+  element :delete_ca_attachment, :i, :class=>"icon-remove documents_delete"
+
+  #direct approve btn
+  element :direct_approve_btn, :i, :xpath=>"(//a[@class='approve-href']/i)[2]"
+
+  #change status btn
+  button :change_status_btn, :id=>"change-status"
+
+  #verify row is red
+  # element :verify_row_red_ornot , :tr ,:xpath=> "//table/tbody/tr"
+  #save btn 
+  # button :save_project_feedback, :xpath=>"//div[7]/div[3]/div/button"
+  #delete project
+  # element :delete_project, :i ,:xpath=>"//tr/td[17]/a[3]/i"
+  #alert info 
+  # div :verify_alert, :class=>"alert alert-block alert-error"
+  #Project requested consultants
+  # text_field :input_consultants_requested, :id=>"Project_requestedconsultants"
+  #Project expected consultants
+  # text_field :input_consultants_expected, :id=>"Project_expectedconsultants"
+  #Project price
+  # text_field :input_consultants_price, :id=>"Project_price"
+  #Project currencyunit
+  # select_list :select_currency, :id=>"Project_currencyunit"
+  
+  # button :cancel_updatetask, :text=>"Cancel"
+  #cancel arrange step2
+  # button :cancel_arrange_step2, :xpath=>"//div[2]/div[2]/input[3]"
+
+
   #close btn
-  button :close_btn, :text=>"Close"
+  # button :close_btn, :text=>"Close"
   #verify style is red
-  div :style_red, :xpath=>"//div[3]/div/div/div/div/form/div/div/div"
+  # div :style_red, :xpath=>"//div[3]/div/div/div/div/form/div/div/div"
   #click consultant link
-  link :click_consultant_link, :xpath=>"//tr/td[9]/div/a"
+  # link :click_consultant_link, :xpath=>"//tr/td[9]/div/a"
   #recommend warning bar info
-  div :recommend_warning_bar_info, :id=>"recommend-confirm"       
+  # div :recommend_warning_bar_info, :id=>"recommend-confirm"       
 
   #input recommend ID 
-  text_field :input_recommend_id, :xpath=>"//div[3]/div/span[2]/input"
+  # text_field :input_recommend_id, :xpath=>"//div[3]/div/span[2]/input"
   #recommand step 1 ID
-  span :verify_recommand_ID, :id=>"'listid-error_' . $consultant->id"
+  # span :verify_recommand_ID, :id=>"'listid-error_' . $consultant->id"
   #link of Choose Other Company&Position
-  link :choose_position, :text=>"Choose Other Company&Position"
+  # link :choose_position, :text=>"Choose Other Company&Position"
   #click the OK btn
-  button :ok_btn, :text=>"OK"
+  # button :ok_btn, :text=>"OK"
   #previous btn
-  button :previous_btn, :value=>"Previous"
+  # button :previous_btn, :value=>"Previous"
   #cancel send email to client btn
-  button :cancel_send_mail, :xpath=>"//div/button[2]"
+  # button :cancel_send_mail, :xpath=>"//div/button[2]"
   #continue send email to client btn 
-  button :continue_send_mail, :text=>"Continue"
+  # button :continue_send_mail, :text=>"Continue"
   #click the consultant Han when arrange
-  link :consultant_link_when_arrange, :text=>"Han"
+  # link :consultant_link_when_arrange, :text=>"Han"
   #verify nick name
-  span :verify_nick_name, :xpath=>"//div[3]/span[2]"
+  # span :verify_nick_name, :xpath=>"//div[3]/span[2]"
   #send calendar to client checkbox
-  checkbox :send_calendar_email, :xpath=>"//label/input"
+  # checkbox :send_calendar_email, :xpath=>"//label/input"
   #verify consultant date
-  span :verify_consultant_date, :xpath=>"//div[3]/div/span[2]/span[5]"
-  #select user 
-  span :select_consultation_user, :xpath=>"//div[@id='s2id_ProjectSearchForm_userid']/a/span"
-  #click to select user
-  div :click_consultation_user, :text=>"test_km1"
-  #consultation manager
-  td :consultation_manager, :xpath=>"//tr/td[3]"
-  #select participant
-  select_list :select_consultation_participant, :id=>"ProjectSearchForm_participant"
-  #consultation client
-  td :consultation_client, :xpath=>"//tr/td[5]"
-  #consultation input keywords
-  text_field :input_keywords, :id=>"ProjectSearchForm_keywords"
+  # span :verify_consultant_date, :xpath=>"//div[3]/div/span[2]/span[5]"
+
+  
+
   #project info requirement alert
-  span :project_info_requirement_alert, :class=>"help-inline error"
+  # span :project_info_requirement_alert, :class=>"help-inline error"
   #Profile key questions
-  text_area :consultation_key_questions, :id=>"Profile_key_questions"
+  # text_area :consultation_key_questions, :id=>"Profile_key_questions"
   #high rate img on consultation task list page 
-  img :high_rate_img, :xpath=>"//tr/td[8]/div/img"
-  #the link of send ca 
-  link :link_of_send_ca, :text=>"Send CA"
-  #task list page first client contact link
-  link :first_client_contact, :xpath=>"//tr/td/a"
+  # img :high_rate_img, :xpath=>"(//td/div/img)[3]"
+
+  #send ca link
+  link :send_ca_link, :xpath=>"(//td[@class='button-column']/div[2]/a)[2]"
+
+  #ca message
+  text_area :ca_message, :id=>"compliance_message"
+
+  #ca message send btn
+  button :ca_message_send_btn, :id=>"compliance-send-submit"
+  
   #start time of task basic info 
-  text_field :input_start_time, :id=>"ProjectConsultationTask_starttimeString"
+  # text_field :input_start_time, :id=>"ProjectConsultationTask_starttimeString"
   #end time of task basic info 
-  text_field :input_end_time, :id=>"ProjectConsultationTask_endtimeString"
+  # text_field :input_end_time, :id=>"ProjectConsultationTask_endtimeString"
   #checkbox of send mail client
-  checkbox :send_mail_client_box, :id=>"send-mail-client"
+  # checkbox :send_mail_client_box, :id=>"send-mail-client"
   #send feedback mail to consultant
-  checkbox :send_mail_consultant_box, :name=>"send-mail"
-  ##consultant page input consultant name
-  text_field :input_consultant_name, :id=> "keywords"
-  
-  
+  # checkbox :send_mail_consultant_box, :name=>"send-mail"
 
-  def choose_client
-    self.click_client_element.when_present.click
-    self.select_client_element.when_present.click
-  end
 
-  def view_projectinfo
-    self.view_project_link_element.when_present.click
-  end
-  
-  def edit_project_info
-    self.project_basic_edit_element.when_present.click
-    self.project_description_element.when_present.clear
-    self.project_description_element.when_present.append "at_test_consultationlol wowawowerjwad@!#!@3  123"
-    self.select_industry_element.when_present.select "Aerospace - 航空"
-    self.project_basic_edit_element.when_present.click
-    self.edit_project_client_contact_element.when_present.click
-    self.edit_project_client_contact_element.when_present.click
-    self.edit_project_team_element.when_present.click
-    self.select_team_pm_element.when_present.select "test_km10"
-    self.edit_project_team_element.when_present.click
-		self.edit_project_requirements_element.when_present.click
-		self.input_info_requirements_element.when_present.clear
-		self.input_info_requirements_element.when_present.append "at_test_consultationlol wowawowerjwad@!#!@3  123"
-		self.edit_project_requirements_element.when_present.click
-  end
-
-  def onhold_note
-    self.select_onhold_reason_element.when_present.select "Change of project direction"
-    self.save_onhold_note_element.when_present.click
-  end
+  # def onhold_note
+  #   self.select_onhold_reason_element.when_present.select "Change of project direction"
+  #   self.save_onhold_note_element.when_present.click
+  # end
 
   def alert_success
    self.alert_success_information_element.when_present.text
-  end
-  
-  def delete_project
-    project_name = self.first_project
-    if project_name.include? "AT_我叫weijun"
-       message =self.alert do
-       self.del_consultation_element.when_present.click
-       end
-       message.should == "Are you sure you wish to delete this project?"
-    else
-       puts "There is no new project to delete."
-    end    
   end
   
   def project_feedback
@@ -366,403 +533,627 @@ class ProjectConsultationPage < Lol::Page
 	
 	def add_consultant
 	    self.add_consultant_link_element.when_present.click
-	    self.input_consultant_name_element.when_present.append "Han"
-	    self.filter_element.when_present.click
-			sleep 2
-			if self.first_consultant_element.enabled?
-			  puts "顾问添加完成"
-			else
-			  puts "顾问添加失败！"
-			end
+      hidden_element
+	    self.keywords_field_element.when_present.value="Ryan"
+	    self.search_element.when_present.click
+      hidden_element
 			self.first_consultant_element.when_present.click
-			self.add_consultant_btn_element.when_present.click
-			self.go_to_this_project_list_element.when_present.click
-			sleep 1
-			self.text.include? "Not Contacted"
+			self.add_consultant_to_project_btn_element.when_present.click
+			self.back_to_the_project_element.when_present.click
 	end
 	
 	def add_two_consultants
 	    self.add_consultant_link_element.when_present.click
-      self.filter_element.when_present.click
-      sleep 2
+      hidden_element
+      self.keywords_field_element.when_present.value="Ryan"
+      self.search_element.when_present.click
+      hidden_element
       self.first_consultant_element.when_present.click
       self.second_consultant_element.when_present.click
-      self.add_consultant_btn_element.when_present.click
+      self.add_consultant_to_project_btn_element.when_present.click
+      self.back_to_the_project_element.when_present.click
 	end
 	
-	def change_selected_without_compliace
-	    sleep 2
-	    self.first_task_checkbox_element.when_present.click
-	    self.choose_taskaction_element.when_present.select("Selected")
-			self.update_taskstatus_element.when_present.click
-			sleep 2
-			self.text.include? "You cannot do select action because there is no compliance requirement."
-	end
+  #-1
+	# def change_selected_without_compliace
+	#     sleep 2
+	#     self.first_task_checkbox_element.when_present.click
+	#     self.choose_task_action_element.when_present.select("Selected")
+	# 		self.update_task_status_element.when_present.click
+	# 		self.text.include? "You cannot do select action because there is no compliance requirement."
+	# end
 	
-	def change_recommended
-	    sleep 2
-	    self.first_task_checkbox_element.when_present.click
-	    self.choose_taskaction_element.when_present.select("Recommended")
-	    self.update_taskstatus_element.when_present.click
-	    self.recommand_alert_btn_element.when_present.click
-			sleep 2
-			self.contacted_btn_element.when_present.click
-			self.change_status_element.when_present.click
-			sleep 1
-			self.text.include? "Change task status successfully. "
+	def change_notcontacted_to_recommended
+	    self.check_first_task_checkbox
+	    self.choose_task_action_element.when_present.select "Recommended"
+	    self.update_task_status_element.when_present.click
+			self.select_contacted_element.when_present.click
+			self.next_btn_element.when_present.click
+      self.select_email_to_element.when_present.value="test_km1@capvision.com"
+      self.send_keys(:enter)
+      self.send_email_element.when_present.click
+      self.recommend_continue_element.when_present.click
 	end
-	
-	def change_pending
-	    sleep 2
-      self.first_task_checkbox_element.when_present.click
-      if self.second_task_checkbox_element.exist?
-        self.second_task_checkbox_element.when_present.click
-      end
-      self.choose_taskaction_element.when_present.select("Pending")
-      self.update_taskstatus_element.when_present.click
-	end
-	
-	def change_second_task task_status
-	    sleep 2
-	    self.second_task_checkbox_element.when_present.click
-      self.choose_taskaction_element.when_present.select task_status
-      self.update_taskstatus_element.when_present.click
-      if task_status == "Recommended"
-        self.contacted_btn_element.when_present.click
-        puts "Recommend task"
-      else
-        sleep 2
-        self.consultant_date_element.when_present.clear
-        self.consultant_date_element.when_present.append "23:57"
-        self.nick_name_element.when_present.clear
-        self.nick_name_element.when_present.append "cenimeiace"
-        self.type_of_interview_element.when_present.select "Phone"
-        puts "Arrange task"
-      end
-      self.change_status_element.when_present.click
-	end
-	
-	def change_ca_to_NA
-	    self.link_to_compliance_element.when_present.click
-	    self.client_agreement_element.when_present.click
-      self.select_client_agreement_element.when_present.select "N/A"
-      self.save_client_agreement_element.when_present.click
-	end
-	
-	def change_ca_to_signment
-		  self.link_to_compliance_element.when_present.click
-      self.client_agreement_element.when_present.click
-      self.select_client_agreement_element.when_present.select "AT测试ca1_修改后"
-      self.save_client_agreement_element.when_present.click
-	end
-	
-	def change_recommend_to_arrange
-	    sleep 2
-      self.first_task_checkbox_element.when_present.click
-      self.choose_taskaction_element.when_present.select "Arranged"
-      self.update_taskstatus_element.when_present.click
+
+  def change_recommended_to_arranged
+      self.check_first_task_checkbox
+      self.choose_task_action_element.when_present.select "Arranged"
+      self.update_task_status_element.when_present.click
+      self.consultation_time_element.when_present.clear
+      self.consultation_time_element.when_present.value= "23:57"
+      self.nick_name_element.when_present.clear
+      self.nick_name_element.when_present.value= "cenimeiace"
+      self.type_of_interview_element.when_present.select "Phone"
+      self.next_btn_element.when_present.click
+      self.select_email_to_element.when_present.value="test_km1@capvision.com"
+      self.send_keys(:enter)
+      self.select_calendar_to_element.when_present.value="tsheng@capvision.com"
+      self.send_keys(:enter)
+      self.send_email_element.when_present.click
+      sleep 10
+      self.cancel_btn_element.when_present.click
+  end
+
+  def add_client_contact
+    self.add_client_contact_btn_element.when_present.click
+    self.confirm_add_client_contact_btn_element.when_present.click
+  end
+
+
+  def change_arranged_to_completed_pic
+      self.check_first_task_checkbox
+      self.choose_task_action_element.when_present.select "Completed"
+      self.update_task_status_element.when_present.click
+      self.task_manager_element.when_present.select "test_km1"
+      self.task_end_date_element.when_present.click
+      self.select_task_end_date_element.when_present.click
+      self.task_end_time_element.when_present.clear
+      self.task_end_time_element.when_present.value="20:00"
+      self.consultation_task_type_of_interview_element.when_present.select "In-Person"
+      self.consultation_task_industry_element.when_present.click
+      self.select_consultation_task_industry_element.when_present.click
+      self.client_hour_element.when_present.clear
+      self.client_hour_element.when_present.value= "10"
+      self.client_billing_notes_element.when_present.clear
+      self.client_billing_notes_element.when_present.value= "this is billing notes"
+      self.consultant_hour_element.when_present.clear
+      self.consultant_hour_element.when_present.value= "10"
+      self.send_feedback_email_to_consultant_element.when_present.uncheck
+      self.complete_page_save_btn_element.when_present.click
+  end
+  
+  def change_pic_to_pip
+    self.apply_for_payment_btn_element.when_present.click
+    self.yes_or_no_btn_element.when_present.click
+    sleep 5
+    self.apply_btn_element.when_present.click
+  end
+
+  def get_task_id
+    self.task_table_list_element[3][1].when_present.text
+  end
+
+  def get_fo_status
+    self.task_table_list_element[6][4].when_present.text
+  end
+
+  def get_project_url
+    self.current_url
+  end
+
+  def change_pip_to_pc
+    taskid=(self.get_task_id).to_i
+    self.direct_to_newpayment_page
+    self.task_id_element.when_present.value=taskid
+    self.search_element.when_present.click
+    message=self.confirm(true) do
+       self.payment_btn_element.when_present.click
+    end
+  end
+
+  def change_cl
+    self.cl_btn_element.when_present.click
+    self.new_client_hour_element.when_present.value="12"
+    self.billing_notes_element.when_present.value="need change cl"
+    self.confirm_change_cl_btn_element.when_present.click
+  end
+
+  def change_consultant_hour
+    self.co_btn_element.when_present.click
+    self.new_consultant_hour_element.when_present.value="2"
+    self.payment_notes_element.when_present.value="need change consultant hour"
+    self.confirm_change_co_btn_element.when_present.click
+  end
+
+  def change_consultant_cash
+    self.co_btn_element.when_present.click
+    self.yes_or_no_btn_element.when_present.click
+    self.new_consultant_cash_element.when_present.value="200"
+    self.payment_notes_element.when_present.value="need change consultant cash"
+    self.confirm_change_co_btn_element.when_present.click
+  end
+
+  def change_notcontacted_to_notselected type
+      self.choose_task_action_element.when_present.select "Not Selected"
+      self.update_task_status_element.when_present.click
       sleep 2
-			self.consultant_date_element.when_present.clear
-      self.consultant_date_element.when_present.append "23:57"
-      self.nick_name_element.when_present.clear
-      self.nick_name_element.when_present.append "cenimeiace"
-      self.type_of_interview_element.when_present.select "Phone"
-			self.change_status_element.when_present.click
-			sleep 1
-			self.text.include? "Change task status successfully. "
-	end
+      self.not_selected_type_elements[type].when_present.click
+      self.confirm_not_selected_type_element.when_present.click
+  end
+    
 	
-	def send_calendar
-	    sleep 2
-			self.first_task_checkbox_element.when_present.click
-			self.choose_taskaction_element.when_present.select "Arranged"
-			self.update_taskstatus_element.when_present.click
-			sleep 2
-			self.consultant_date_element.when_present.clear
-      self.consultant_date_element.when_present.append "23:57"
-      self.nick_name_element.when_present.clear
-      self.nick_name_element.when_present.append "cenimeiace"
-      self.type_of_interview_element.when_present.select "Phone"
-			self.next_step_element.when_present.click
-			sleep 2
-			self.input_mail_to_element.when_present.click
-			self.select_email_element.when_present.click
-			self.input_calendar_to_element.when_present.click
-			self.select_email1_element.when_present.click
-			sleep 2
-			self.send_email_element.when_present.click
-			self.click_no_btn_element.when_present.click
-			sleep 6
-	end
+	# def change_pending
+	#     sleep 2
+ #      self.first_task_checkbox_element.when_present.click
+ #      if self.second_task_checkbox_element.exist?
+ #        self.second_task_checkbox_element.when_present.click
+ #      end
+ #      self.choose_task_action_element.when_present.select("Pending")
+ #      self.update_task_status_element.when_present.click
+	# end
 	
-	def cancel_calendar
-	    message = self.alert do
-	    sleep 1
-	    self.cancel_calendar_link_element.when_present.click
-	  end
-	end
+	# def change_second_task task_status
+	#     sleep 2
+	#     self.second_task_checkbox_element.when_present.click
+ #      self.choose_task_action_element.when_present.select task_status
+ #      self.update_task_status_element.when_present.click
+ #      if task_status == "Recommended"
+ #        self.contacted_btn_element.when_present.click
+ #        puts "Recommend task"
+ #      else
+ #        sleep 2
+ #        self.consultant_date_element.when_present.clear
+ #        self.consultant_date_element.when_present.append "23:57"
+ #        self.nick_name_element.when_present.clear
+ #        self.nick_name_element.when_present.append "cenimeiace"
+ #        self.type_of_interview_element.when_present.select "Phone"
+ #        puts "Arrange task"
+ #      end
+ #      self.change_status_element.when_present.click
+	# end
 	
-	def send_sms_arrange 
-	    sleep 2
-      self.first_task_checkbox_element.when_present.click
-      if self.second_task_checkbox_element.exist?
-        self.second_task_checkbox_element.when_present.click
-      end
-			self.choose_taskaction_element.when_present.select "Arranged"
-			self.update_taskstatus_element.when_present.click
-			sleep 2
-			self.consultant_date_element.when_present.clear
-      self.consultant_date_element.when_present.append "23:57"
-      self.nick_name_element.when_present.clear
-      self.nick_name_element.when_present.append "cenimeiace"
-      self.type_of_interview_element.when_present.select "Phone"
-			self.next_step_element.when_present.click
-			sleep 2
-			self.input_mail_to_element.when_present.click
-      self.select_email_element.when_present.click
-      self.input_calendar_to_element.when_present.click
-			self.select_calendar_to_element.when_present.click
-			self.send_email_element.when_present.click
-			sleep 5
-			self.click_yes_btn_element.when_present.click
-			sleep 2
-			self.select_sms_element.when_present.click
-			if self.select_second_sms_element.exist?
-         self.select_second_sms_element.when_present.click 
-			end
-			self.submit_sms_element.when_present.click
-	end
+	# def change_ca_to_NA
+	#     self.link_to_compliance_element.when_present.click
+	#     self.client_agreement_element.when_present.click
+ #      self.select_client_agreement_element.when_present.select "N/A"
+ #      self.save_client_agreement_element.when_present.click
+	# end
+	
+	# def change_ca_to_signment
+	# 	  self.link_to_compliance_element.when_present.click
+ #      self.client_agreement_element.when_present.click
+ #      self.select_client_agreement_element.when_present.select "AT测试ca1_修改后"
+ #      self.save_client_agreement_element.when_present.click
+	# end
+	
+
+	# def send_calendar
+	#     sleep 2
+	# 		self.first_task_checkbox_element.when_present.click
+	# 		self.choose_task_action_element.when_present.select "Arranged"
+	# 		self.update_task_status_element.when_present.click
+	# 		sleep 2
+	# 		self.consultant_date_element.when_present.clear
+ #      self.consultant_date_element.when_present.append "23:57"
+ #      self.nick_name_element.when_present.clear
+ #      self.nick_name_element.when_present.append "cenimeiace"
+ #      self.type_of_interview_element.when_present.select "Phone"
+	# 		self.next_step_element.when_present.click
+	# 		sleep 2
+	# 		self.input_mail_to_element.when_present.click
+	# 		self.select_email_element.when_present.click
+	# 		self.input_calendar_to_element.when_present.click
+	# 		self.select_email1_element.when_present.click
+	# 		sleep 2
+	# 		self.send_email_element.when_present.click
+	# 		self.click_no_btn_element.when_present.click
+	# 		sleep 6
+	# end
+	
+	# def send_sms_arrange 
+	#     sleep 2
+ #      self.first_task_checkbox_element.when_present.click
+ #      if self.second_task_checkbox_element.exist?
+ #        self.second_task_checkbox_element.when_present.click
+ #      end
+	# 		self.choose_task_action_element.when_present.select "Arranged"
+	# 		self.update_task_status_element.when_present.click
+	# 		sleep 2
+	# 		self.consultant_date_element.when_present.clear
+ #      self.consultant_date_element.when_present.append "23:57"
+ #      self.nick_name_element.when_present.clear
+ #      self.nick_name_element.when_present.append "cenimeiace"
+ #      self.type_of_interview_element.when_present.select "Phone"
+	# 		self.next_step_element.when_present.click
+	# 		sleep 2
+	# 		self.input_mail_to_element.when_present.click
+ #      self.select_email_element.when_present.click
+ #      self.input_calendar_to_element.when_present.click
+	# 		self.select_calendar_to_element.when_present.click
+	# 		self.send_email_element.when_present.click
+	# 		sleep 5
+	# 		self.click_yes_btn_element.when_present.click
+	# 		sleep 2
+	# 		self.select_sms_element.when_present.click
+	# 		if self.select_second_sms_element.exist?
+ #         self.select_second_sms_element.when_present.click 
+	# 		end
+	# 		self.submit_sms_element.when_present.click
+	# end
 	
 	
-	def change_arrange_to_complete
-	    sleep 2
-			self.first_task_checkbox_element.when_present.click
-			self.choose_taskaction_element.when_present.select "Completed"
-			self.update_taskstatus_element.when_present.click
-			sleep 2
-			self.consultation_task_endtime_element.when_present.clear
-			self.consultation_task_endtime_element.when_present.append "23:59"
-			self.consultation_task_type_of_interview_element.when_present.select "In-Person"
-			self.consultation_task_industry_element.when_present.click
-			self.select_consultation_task_industry_element.when_present.click
-			self.input_task_receipts_hours_element.when_present.clear
-			self.input_task_receipts_hours_element.when_present.append "10"
-			self.input_task_receipts_billnotes_element.when_present.clear
-			self.input_task_receipts_billnotes_element.when_present.append "this is billing notes"
-			self.input_task_payment_hours_element.when_present.clear
-			self.input_task_payment_hours_element.when_present.append "10"
-			self.save_complete_page_btn_element.when_present.click
-			sleep 1
-			self.text.include? "Completed"
-	end
+
 	
 	def change_completed_to_deleted
-	    sleep 2
-			self.first_task_checkbox_element.when_present.click
-			self.choose_taskaction_element.when_present.select "Deleted"
-			self.update_taskstatus_element.when_present.click
-			sleep 2
-			self.text.include? "Change task status successfully."
+			self.check_first_task_checkbox
+			self.choose_task_action_element.when_present.select "Deleted"
+			self.update_task_status_element.when_present.click
 	end
 	
-	def change_completed_to_10minstest
-		  self.attach_to_window(:title=> first_project+" - Task List - Capvision")
-		  sleep 2
-			self.first_task_checkbox_element.when_present.click
-			self.choose_taskaction_element.when_present.select "10mins test"
-			self.update_taskstatus_element.when_present.click
-			sleep 2
-			self.text.include? "Change task status successfully. "
-	end
+	# def change_completed_to_10minstest
+	# 	  self.attach_to_window(:title=> first_project+" - Task List - Capvision")
+	# 	  sleep 2
+	# 		self.first_task_checkbox_element.when_present.click
+	# 		self.choose_task_action_element.when_present.select "10mins test"
+	# 		self.update_task_status_element.when_present.click
+	# 		sleep 2
+	# 		self.text.include? "Change task status successfully. "
+	# end
 	
 	def update_task
-	    self.update_task_link1_element.when_present.click
-			sleep 4
-			self.text.include? "Edit Consultation"
-			self.save_consultaion_element.when_present.click
+	    self.update_task_btn_element.when_present.click
+      hidden_element
+			self.client_hour_element.when_present.value="2"
+			self.update_task_page_save_btn_element.when_present.click
 	end
 	
-	def	tc
-	    self.link_to_compliance_element.when_present.click
-	    self.compliance_tnc_link_element.when_present.click
-	    self.select_tnc_or_ca_element.when_present.select "凯盛专家网络条款协议_V4.0"
-	    self.save_tnc_or_ca_element.when_present.click
+	# def	tc
+	#     self.link_to_compliance_element.when_present.click
+	#     self.compliance_tnc_link_element.when_present.click
+	#     self.select_tnc_or_ca_element.when_present.select "凯盛专家网络条款协议_V4.0"
+	#     self.save_tnc_or_ca_element.when_present.click
+	# end
+	
+	# def	client_agreement
+	#     self.compliance_ca_link_element.when_present.click
+	#     self.select_tnc_or_ca_element.when_present.select "AT测试ca1_修改后"
+	#     self.save_tnc_or_ca_element.when_present.click
+	# end
+	
+	# def	training
+	# 		self.training_label_element.when_present.click
+	# end
+	
+	# def	capvision_approval
+	# 	  self.capcheck_label_element.when_present.click
+	# end
+	
+	# def	client_approval
+	#     self.clientcheck_label_element.when_present.click
+	#     self.link_to_task_list_element.when_present.click
+	# 		sleep 2
+	# 		self.first_task_checkbox_element.when_present.click
+	# 		self.choose_task_action_element.when_present.select "Selected"
+	# 		self.update_task_status_element.when_present.click
+	# 		self.text.include? "You cannot select the action before you recommend the task."
+	# end
+	
+	
+	# def change_notcontacted_to_selected
+	#     self.task_list_link_element.when_present.click
+	# 	  sleep 2
+	# 		self.first_task_checkbox_element.when_present.click
+	# 		self.choose_task_action_element.when_present.select "Selected"
+	# 		self.update_task_status_element.when_present.click
+	# 		sleep 2
+	# 		self.text.include? "You cannot select the action before you recommend the task."
+	# end
+	
+	def upload_ca_attachment dir
+      self.upload_ca_attachment_btn_element.when_present.click
+			self.select_upload_file=dir
+      self.upload_file_element.when_present.click
 	end
 	
-	def	client_agreement
-	    self.compliance_ca_link_element.when_present.click
-	    self.select_tnc_or_ca_element.when_present.select "AT测试ca1_修改后"
-	    self.save_tnc_or_ca_element.when_present.click
+	# def upload_dayu20m
+	# 		self.upload_file_element.when_present.click
+	# 		self.ndb_file_upload_input_element.when_present.set 
+	# 		self.ndb_file_upload_btn_element.when_present.click
+	# 		sleep 1
+	# 		self.text.include? "dayu20M.pdf"
+	# end
+	
+	# def upload_exe
+	# 		self.upload_file_element.when_present.click
+	# 		self.ndb_file_upload_input_element.when_present.set 
+	# 		self.ndb_file_upload_btn_element.when_present.click
+	# 		sleep 1
+	# 		self.text.include? "Invalid file "
+	# end
+	
+	def update_task_feedback
+	    self.task_feedback_btn_element.when_present.click
+			self.select_expertise_element.when_present.select "5"
+			self.select_communication_element.when_present.select "5"
+			self.select_professionalism_element.when_present.select "5"
 	end
 	
-	def	training
-			self.training_label_element.when_present.click
-	end
-	
-	def	capvision_approval
-		  self.capcheck_label_element.when_present.click
-	end
-	
-	def	client_approval
-	    self.clientcheck_label_element.when_present.click
-	    self.link_to_task_list_element.when_present.click
-			sleep 2
-			self.first_task_checkbox_element.when_present.click
-			self.choose_taskaction_element.when_present.select "Selected"
-			self.update_taskstatus_element.when_present.click
-			self.text.include? "You cannot select the action before you recommend the task."
-	end
-	
-	
-	def change_notcontacted_to_selected
-	    self.task_list_link_element.when_present.click
-		  sleep 2
-			self.first_task_checkbox_element.when_present.click
-			self.choose_taskaction_element.when_present.select "Selected"
-			self.update_taskstatus_element.when_present.click
-			sleep 2
-			self.text.include? "You cannot select the action before you recommend the task."
-	end
-	
-	def upload_docnormal
-			self.upload_file_element.when_present.click
-			self.ndb_file_upload_input_element.when_present.set File.expand_path(File.join('.'),'app/attachment/doc_normal.docx')
-			self.ndb_file_upload_btn_element.when_present.click
-			sleep 1
-			self.text.include? "doc_normal"
-	end
-	
-	def upload_dayu20m
-			self.upload_file_element.when_present.click
-			self.ndb_file_upload_input_element.when_present.set File.expand_path(File.join('.'),'app/attachment/dayu20M.pdf')
-			self.ndb_file_upload_btn_element.when_present.click
-			sleep 1
-			self.text.include? "dayu20M.pdf"
-	end
-	
-	def upload_exe
-			self.upload_file_element.when_present.click
-			self.ndb_file_upload_input_element.when_present.set File.expand_path(File.join('.'),'app/attachment/EXE.exe')
-			self.ndb_file_upload_btn_element.when_present.click
-			sleep 1
-			self.text.include? "Invalid file "
-	end
-	
-	def delete_document
-			message = self.alert do
-			  self.del_document_element.when_present.click
-			end
-	end
-	
-	def verify_deletedocument
-			self.info_after_delete_document_element.when_present.text
-	end
-	
-	def task_feedback
-	    self.task_feedback_link_element.when_present.click
-			self.select_expertise_element.when_present.select("5")
-			self.select_communication_element.when_present.select("5")
-			self.select_professionalism_element.when_present.select("5")
-			message = self.alert do
-			  self.save_task_feedback_element.when_present.click
-			end
-			sleep 2
-			message.should == "Save Successful!"
-	end
-	
-	def kmnotes
+	def update_km_notes
 	    self.km_note_link_element.when_present.click
-	    sleep 1
-	    self.input_km_note_element.when_present.clear
-	    self.input_km_note_element.when_present.when_present.append "KM NOTES"
+	    self.km_note_value_element.when_present.clear
+	    self.km_note_value_element.when_present.when_present.append "KM NOTES"
 	    self.save_km_note_element.when_present.click
-			self.text.include? "KM NOTES"
 	end
 	
-	def change_to_selected
-		  sleep 2
-			self.first_task_checkbox_element.when_present.click
-			self.choose_taskaction_element.when_present.select "Selected"
-			self.update_taskstatus_element.when_present.click
-			sleep 1
-			self.text.include? "Change task status successfully. "
-	end
+	# def change_to_selected
+	# 	  sleep 2
+	# 		self.first_task_checkbox_element.when_present.click
+	# 		self.choose_task_action_element.when_present.select "Selected"
+	# 		self.update_task_status_element.when_present.click
+	# 		sleep 1
+	# 		self.text.include? "Change task status successfully. "
+	# end
 	
-	def change_seleted_to_arranged
-		  sleep 2
-			self.first_task_checkbox_element.when_present.click
-			self.choose_taskaction_element.when_present.select "Arranged"
-			self.update_taskstatus_element.when_present.click
-			sleep 1
-			self.text.include? "It’s cannot be arrange because they have not yet been approved by the Compliance Team. "
-	end
+	# def change_seleted_to_arranged
+	# 	  sleep 2
+	# 		self.first_task_checkbox_element.when_present.click
+	# 		self.choose_task_action_element.when_present.select "Arranged"
+	# 		self.update_task_status_element.when_present.click
+	# 		sleep 1
+	# 		self.text.include? "It’s cannot be arrange because they have not yet been approved by the Compliance Team. "
+	# end
 	
-	def send_ca
-	    self.send_ca_element.when_present.click
-			sleep 2
-			self.compliance_send_submit_element.when_present.click
-			sleep 2
-			self.text.include? "Send Email Successful."
-	end
+
+	# def sign_ca_no_document
+	#     message = self.alert do
+	#       self.sign_ca_element.when_present.click
+	# 		end
+	# end
 	
-	def sign_ca_no_document
-	    message = self.alert do
-	      self.sign_ca_element.when_present.click
-			end
-	end
+
+	# def task_list
+	# 	  self.task_list_link_element.when_present.click
+	# end
 	
-	def resend_ca 
-			self.resend_ca_element.when_present.click
-			sleep 2
-			self.compliance_send_submit_element.when_present.click
-			sleep 2
-			self.text.include? "Send Email Successful."
-	end
+	# def verify_row_is_red
+	#   a = self.verify_row_red_ornot_element.when_present.class_name
+	#   puts a
+	#     self.verify_row_red_ornot_element.when_present.class_name
+	# end
 	
-	def task_list
-		  self.task_list_link_element.when_present.click
-	end
+	# def delete_completed_project
+	#   if self.task_status_element.when_present.text == "Completed"
+ #      self.attach_to_window(:title=>"Consultation Projects - Capvision")
+ #      message = self.alert do
+ #        self.del_project_element.when_present.click
+ #      end
+ #      message.should == "You can not delete this project, because it has completed tasks."
+ #    else
+ #      puts "Warning:task status is not complete"
+ #    end
+	# end
 	
-	def verify_row_is_red
-	  a = self.verify_row_red_ornot_element.when_present.class_name
-	  puts a
-	    self.verify_row_red_ornot_element.when_present.class_name
-	end
+	# def select_and_update_task operation
+ #    self.select_project_element.when_present.click
+ #    self.attach_to_window(:title=>first_project+" - Task List - Capvision")
+ #    self.first_task_checkbox_element.when_present.click
+ #    self.choose_task_action_element.when_present.select operation
+ #    self.update_task_status_element.when_present.click
+ #  end
 	
-	def delete_completed_project
-	  if self.task_status_element.when_present.text == "Completed"
-      self.attach_to_window(:title=>"Consultation Projects - Capvision")
-      message = self.alert do
-        self.del_project_element.when_present.click
-      end
-      message.should == "You can not delete this project, because it has completed tasks."
-    else
-      puts "Warning:task status is not complete"
-    end
-	end
+	# def verify_high_rate
+	#   if self.high_rate_img_element.exists?
+	#     puts "this consultant is high rate cost"
+	#   else
+	#     puts "the currency of consultant rate is not RMB"
+	#   end
+	# end
 	
-	def select_and_update_task operation
-    self.select_project_element.when_present.click
-    self.attach_to_window(:title=>first_project+" - Task List - Capvision")
-    self.first_task_checkbox_element.when_present.click
-    self.choose_taskaction_element.when_present.select operation
-    self.update_taskstatus_element.when_present.click
+	# def verify_link_of_send_ca
+	#   if self.link_of_send_ca_element.exists?
+	#     puts "error:the link of send ca should not on the page when ca is null "
+	#   else
+	#     puts "case is all right"
+	#   end
+	# end
+
+  def project_table_list_manager
+    self.project_table_list_element[3][3].when_present.text
   end
 	
-	def verify_high_rate
-	  if self.high_rate_img_element.exists?
-	    puts "this consultant is high rate cost"
-	  else
-	    puts "the currency of consultant rate is not RMB"
-	  end
-	end
-	
-	def verify_link_of_send_ca
-	  if self.link_of_send_ca_element.exists?
-	    puts "error:the link of send ca should not on the page when ca is null "
-	  else
-	    puts "case is all right"
-	  end
-	end
-	
+  def project_table_list_client
+    self.project_table_list_element[3][5].when_present.text
+  end
+
+  def project_table_list_name
+    self.project_table_list_element[3][2].when_present.text
+  end
+
+  def project_table_list_industry
+    self.project_table_list_element[3][13].when_present.text
+  end
+
+  def project_table_list_status
+    self.project_table_list_element[3][14].when_present.text
+  end
+
+
+  def create_consultation_project project_type
+    self.create_consultation_link_element.when_present.click
+    hidden_element
+    self.create_project_basic_information project_type
+    self.project_next_element.when_present.click
+    hidden_element
+    self.fill_client_contact
+    self.fill_project_team
+    self.fill_project_requirements
+    self.save_consultation_element.when_present.click
+  end
+
+  def create_consultation_project_with_ca_client project_type
+    self.create_consultation_link_element.when_present.click
+    hidden_element
+    self.create_project_basic_information project_type
+    self.project_next_element.when_present.click
+    hidden_element
+    self.fill_client_contact_with_ca
+    self.fill_project_team
+    self.fill_project_requirements
+    self.save_consultation_element.when_present.click
+  end
+
+  def create_project_basic_information project_type
+    self.project_type_element.when_present.select project_type
+    self.fill_project_basic_information
+  end
+
+  def fill_project_basic_information 
+    self.project_name_element.when_present.value="tim_test_consultation_name"
+    self.project_client_case_code_element.when_present.value="tim_test_case_code"
+    self.project_description_element.when_present.value="tim test project description"
+    self.select_industry_element.when_present.select "Aerospace - 航空"
+    self.project_consultants_requested_element.when_present.value="2"
+    self.project_consultants_expected_element.when_present.value="3"
+    self.project_price_element.when_present.value="50"
+    self.project_price_currency_element.when_present.select "RMB"
+    self.project_time_frame_element.when_present.select "In one month"
+  end
+
+  def edit_project_basic_information
+    self.edit_project_basic_information_element.when_present.click
+    self.fill_project_basic_information
+    self.edit_project_basic_information_element.when_present.click
+  end
+
+  def fill_client_contact 
+    self.project_client_element.when_present.click
+    self.select_project_client_element.when_present.click
+    self.project_client_contact_element.when_present.click
+    self.select_project_client_contact_element.when_present.click
+    self.client_project_manager_element.when_present.click
+    self.select_client_project_manager_element.when_present.click
+    self.project_manager_element.when_present.click
+  end
+
+  def fill_client_contact_with_ca
+    self.project_client_element.when_present.click
+    self.select_project_client_with_ca_element.when_present.click
+  end
+
+  def edit_project_client_contact
+    self.edit_project_client_contact_element.when_present.click
+    self.project_client_contact_element.when_present.click
+    self.select_project_client_contact_element.when_present.click
+    self.client_project_manager_element.when_present.click
+    self.select_client_project_manager_element.when_present.click
+    self.edit_project_client_contact_element.when_present.click
+  end
+
+  def fill_project_team
+    self.project_manager_element.when_present.select "test_km1"
+    self.skm_element.when_present.select "Test Skm1"
+    self.support_member_element.when_present.click
+    self.support_member_element.when_present.clear
+    self.select_support_member_element.when_present.click
+  end
+
+  def edit_project_team
+    self.edit_project_team_element.when_present.click
+    self.edit_project_manager_element.when_present.select "Timsheng"
+    self.edit_skm_element.when_present.select "Test Skm1"
+    self.edit_project_team_element.when_present.click
+  end
+
+
+  def fill_project_requirements
+    self.info_requirements_element.when_present.value= "tim test info requirements"
+    self.key_questions_element.when_present.value="tim test key questions"
+    self.preferred_profiles_element.when_present.value="tim test preferred profiles"
+    self.questionnaire_element.when_present.value="tim test questionnaire"
+  end
+
+  def edit_project_requirements
+    self.edit_project_requirements_element.when_present.click
+    self.edit_info_requirements_element.when_present.value="edit tim test info requirements"
+    self.edit_key_questions_element.when_present.value="edit tim test key questions"
+    self.edit_preferred_profiles_element.when_present.value="edit tim test preferred profiles"
+    self.edit_questionnaire_element.when_present.value="edit tim test questionnaire"
+    self.edit_project_requirements_element.when_present.click
+  end
+
+  def select_first_consultation
+    hidden_element
+    self.user_filter_element.when_present.click
+    self.select_user_element.when_present.click
+    self.keywords_element.when_present.value="tim"
+    self.search_consultation_element.when_present.click
+    self.first_consultation_element.when_present.click
+    self.attach_to_window :url=>self.first_consultation_element.href
+  end
+
+  def select_first_consultation_with_ca_client
+    hidden_element
+    self.user_filter_element.when_present.click
+    self.select_user_element.when_present.click
+    self.client_filter_element.when_present.click
+    self.select_ca_client_element.when_present.click
+    self.search_consultation_element.when_present.click
+    self.first_consultation_element.when_present.click
+    self.attach_to_window :url=>self.first_consultation_element.href
+  end
+
+  def select_first_consultation_with_compliance
+    hidden_element
+    self.user_filter_element.when_present.click
+    self.select_user_element.when_present.click
+    self.client_filter_element.when_present.click
+    self.select_compliance_client_element.when_present.click
+    self.search_consultation_element.when_present.click
+    self.first_consultation_element.when_present.click
+    self.attach_to_window :url=>self.first_consultation_element.href
+  end
+
+  def upload_project_attachment dir
+    hidden_element
+    self.project_upload_btn_element.when_present.click
+    self.select_upload_file= dir
+    self.upload_file_element.when_present.click
+  end
+
+  def check_first_task_checkbox
+    self.task_list_checkbox_elements[0].when_present.click
+  end
+
+  def check_second_task_checkbox
+    self.task_list_checkbox_elements[1].when_present.click
+  end
+
+  def check_last_task_checkbox
+    self.task_list_checkbox_elements[-1].when_present.click
+  end
+
+  def filter_by_region
+    self.choose_region_element.when_present.select "International.C"
+  end
+
+  def search_task
+    self.search_task_btn_element.when_present.click
+    self.search_task_keywords_element.when_present.value="Ryan"
+    self.search_task_btn_element.when_present.click
+  end
+
+  def perform_fo
+    self.fo_btn_elements[0].when_present.click
+    self.confirm_fo_element.when_present.click
+  end
+
+  def remove_all_tasks
+    self.task_list_thead_checkbox_element.when_present.check
+    self.choose_task_action_element.when_present.select "Deleted"
+    self.update_task_status_element.when_present.click
+  end
+
+
+
+
 end
